@@ -1,22 +1,27 @@
-﻿Task1();
-Task2();
-Task3();
+﻿Calculator();
+AgeVerifiction();
+Kpi();
 
-static void Task3()
+static void Kpi()
 {
     try
     {
-        bool exit = true;
-        while (exit)
+        bool exit = default;
+        string kpiString;
+        while (!exit)
         {
             decimal kpiBonus = 0;
 
-            Console.WriteLine("\nВведите Зароботную плату");
-            string summaryString = Console.ReadLine();
-            if (decimal.TryParse(summaryString, out decimal summaryDecimal)) { }
+            Console.WriteLine("\nВведите Заработную плату");
+            string summaryString = Console.ReadLine() ?? string.Empty;
+            if (decimal.TryParse(summaryString, out decimal summaryDecimal)) ;
             else
             {
-                if (summaryString.Trim().ToLower() == "exit") { exit = false; break; }
+                if (summaryString.Trim().ToLower() == "exit")
+                {
+                    exit = true;
+                    break;
+                }
                 else
                 {
                     Console.WriteLine("Введена не цифра, для корректной работы использйте цифры \n");
@@ -26,17 +31,21 @@ static void Task3()
             }
 
             Console.WriteLine("\nВведите KPI в процентах");
-            string kpiString = Console.ReadLine();
+            kpiString = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(kpiString, out int kpiInt))
             {
-                if (kpiInt >= 90) { kpiBonus = summaryDecimal * 0.2m; }
+                if (kpiInt >= 90) kpiBonus = summaryDecimal * 0.2m;
                 else if (kpiInt >= 75 && kpiInt <= 89) { kpiBonus = summaryDecimal * 0.1m; }
                 else { kpiBonus = 0; }
 
             }
             else
             {
-                if (kpiString.Trim().ToLower() == "exit") { exit = false; break; }
+                if (kpiString.Trim().ToLower() == "exit") 
+                { 
+                    exit = true; 
+                    break;
+                }
                 else
                 {
                     Console.WriteLine("Введена не цифра, для корректной работы использйте цифры \n");
@@ -56,19 +65,26 @@ static void Task3()
     }
 }
 
-static void Task2()
+static void AgeVerifiction()
 {
     try
     {
 
         bool exit = true;
+        string ageString;
         while (exit)
         {
             Console.WriteLine("\nВведите возраст покупателя");
-            string ageString = Console.ReadLine();
+            ageString = Console.ReadLine() ?? string.Empty;
             if (int.TryParse(ageString, out int ageInt))
             {
-                if (ageInt >= 18) { Console.WriteLine($"Покупатель совершеннолетний"); } else { Console.WriteLine("Покупатель несовершеннолетний"); }
+                if (ageInt <= 0) {Console.WriteLine($"Не корректный возраст"); continue; }
+                if (ageInt > 100) {Console.WriteLine($"Не корректный возраст"); continue; }
+                if (ageInt >= 18) 
+                { 
+                    Console.WriteLine($"Покупатель совершеннолетний");
+                }  
+                else Console.WriteLine("Покупатель несовершеннолетний");
 
 
             }
@@ -94,18 +110,18 @@ static void Task2()
 
 }
 
-static void Task1()
+static void Calculator()
 {
-    string resultMessage = "Ваш ответ равен ";
+    string secondValueString = string.Empty, firstValueString = string.Empty, operation = string.Empty;
     try
     {
-        bool exit = true;
-        while (exit)
+        bool exit = default;
+        while (!exit)
         {
 
             Console.WriteLine("\nВведите первое число");
-            string firstValueString = Console.ReadLine();
-            if (int.TryParse(firstValueString, out int firstValueInt)) { }
+            firstValueString = Console.ReadLine() ?? string.Empty;
+            if (double.TryParse(firstValueString, out double firstValueDouble)) { }
             else
             {
                 if (firstValueString.Trim().ToLower() == "exit") { exit = false; break; }
@@ -120,15 +136,15 @@ static void Task1()
 
 
             Console.WriteLine("Введите операцию");
-            string operation = Console.ReadLine();
+            operation = Console.ReadLine() ?? string.Empty;
             if (operation.Trim().ToLower() == "exit") { exit = false; break; }
 
 
 
 
             Console.WriteLine("Введите второе число");
-            string secondValueString = Console.ReadLine();
-            if (int.TryParse(secondValueString, out int secondValueInt)) { }
+            secondValueString = Console.ReadLine() ?? string.Empty;
+            if (double.TryParse(secondValueString, out double secondValueDouble)) { }
             else
             {
                 if (secondValueString.Trim().ToLower() == "exit") { exit = false; break; }
@@ -144,19 +160,19 @@ static void Task1()
             switch (operation)
             {
                 case "+":
-                    Console.WriteLine(resultMessage += (firstValueInt + secondValueInt));
+                    Console.WriteLine($"Результат сложения = {(firstValueDouble + secondValueDouble)}" );
                     break;
                 case "-":
-                    Console.WriteLine(resultMessage += (firstValueInt - secondValueInt));
+                    Console.WriteLine($"Результат вычетание = {(firstValueDouble - secondValueDouble)}");
                     break;
                 case "*":
-                    Console.WriteLine(resultMessage += (firstValueInt * secondValueInt));
+                    Console.WriteLine($"Результат умножение = {(firstValueDouble * secondValueDouble)}");
                     break;
                 case "/":
-                    Console.WriteLine(resultMessage += (firstValueInt / secondValueInt));
+                    Console.WriteLine($"Результат деление = {(firstValueDouble / secondValueDouble)}");
                     break;
                 case "%":
-                    Console.WriteLine(resultMessage += (firstValueInt % secondValueInt));
+                    Console.WriteLine($"Результат определение остатка = {(firstValueDouble % secondValueDouble)}");
                     break;
                 default:
                     Console.WriteLine($"Операция {operation} не поддерживается");
