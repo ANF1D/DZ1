@@ -33,9 +33,6 @@ static void OnlineStore()
             throw new Exception("Значение введено не корректно");
         }
 
-
-
-
         finalAmount += amount;
 
         if (isFirstOrder) discount += 0.05m;
@@ -64,9 +61,6 @@ static void OnlineStore()
     {
         Console.WriteLine(ex.Message);
     }
-
-    
-    
 }
 
 static void HR()
@@ -107,6 +101,4 @@ static void HR()
     {
         Console.WriteLine(ex.Message);
     }
-    
-
 }

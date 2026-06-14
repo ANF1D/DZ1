@@ -1,16 +1,11 @@
-﻿//Task1();
-//Task2();
+﻿Task1();
+Task2();
 Task3();
-
-
-
 
 static void Task3()
 {
-
     try
     {
-
         bool exit = true;
         while (exit)
         {
@@ -54,38 +49,12 @@ static void Task3()
 
 
         }
-
-
-
-
-
-
-
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Возникла ошибка {ex.Message}");
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 static void Task2()
 {
@@ -122,18 +91,6 @@ static void Task2()
     {
         Console.WriteLine($"Возникла ошибка {ex.Message}");
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
